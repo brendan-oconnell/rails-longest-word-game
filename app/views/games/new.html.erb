@@ -1,6 +1,6 @@
 <h2>Letters Game</h2>
 <div id="letters-container">
-  <ol>
+  <ol id="sortable">
     <% @letter_grid.each do |letter| %>
       <li class="btn btn-flat" href="#"><%= letter.capitalize %></li>
     <% end %>
@@ -8,6 +8,7 @@
 </div>
 <form novalidate="novalidate" class="simple_form search" action="/score" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :letter_grid, @letter_grid %>
   <div class="search-form-control form-group">
     <input class="form-control string required" type="text" name="guess" id="search_query" />
     <button name="button" type="submit" class="btn btn-flat">
@@ -15,3 +16,5 @@
     </button>
   </div>
 </form>
+
+<%= javascript_pack_tag 'sortable' %>
